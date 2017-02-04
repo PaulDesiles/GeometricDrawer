@@ -1,0 +1,60 @@
+{
+  "name": "VectorGuide",
+  "numberOfColumns": 3,
+  "columns": [
+    {
+      "name": "TODO",
+      "cards": [
+        {
+          "name": "passage en MVC",
+          "details": "M : polygones, guides\nV : comment afficher les polygones en fonction de l'état\nVue Commune qui redirige vers des fonctions abstraites d'affichage\nC : état courant, gestion des vues, modifs sur le modèle",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Utiliser des Qpolygon au lieu des forms",
+          "details": "",
+          "color": "FCC19D"
+        },
+        {
+          "name": "gestion d'un guide défini",
+          "details": "> isNear(ax + b)\n> gestion du magnet",
+          "color": "FCC19D"
+        },
+        {
+          "name": "gestion de plusieurs guides",
+          "details": "> gestion de l'interaction utilisateur\n> conflits ? point de croisement",
+          "color": "FCC19D"
+        },
+        {
+          "name": "création de guide automatique",
+          "details": "",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Idées Interactions",
+          "details": "BOTH\n - CTRL : suit les guides déjà formés et les intersections\n      + ?Clic Droit pour forcer le suivi d'une /plusieurs arrête(s)\n - ALT  : propose des guides d'orientation fixes\n      + MOLETTE : pour faire varier le nombre de guide sur 360°\n\n?Affichage en dégradé des guides : de celui utilisé [foncé] au plus loin de l'orientation actuelle [transparent]. Ou éventail plus réduit.\n?Affichage en même de la /les arrête(s) originaires du guide (en rouge)\n\nEDIT\n - premier clic pour sélectionner la forme, deuxième pour le point\n - double clic sur une arrête de la forme selectionnée : ajoute un point\n - double clic sur un point de la forme selectionnée : supprime le point\n - MAJ : selection de plusieurs points\n - zone de selection souris",
+          "color": "CCD0FC"
+        }
+      ],
+      "settings": {
+        "color": "#ffffff"
+      }
+    },
+    {
+      "name": "WIP",
+      "cards": [],
+      "settings": {
+        "color": ""
+      }
+    },
+    {
+      "name": "DONE",
+      "cards": [],
+      "settings": {
+        "color": ""
+      }
+    }
+  ],
+  "archived": [],
+  "settings": {}
+}
