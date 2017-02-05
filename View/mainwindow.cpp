@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "QListView"
 #include <QStackedLayout>
+#include <QScrollArea>
 #include <qdebug.h>
 #include "Model/mainmodel.h"
 #include "Controller/maincontroller.h"
@@ -24,10 +25,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     renderLayout = new QStackedLayout;
     draw = new DrawArea(Controller);
-    edit = new EditArea(Controller);
 
-    renderLayout->addWidget(draw);
-    renderLayout->addWidget(edit);
+    draw->setMinimumSize(800,800);
+    QScrollArea* drawScroll = new QScrollArea();
+    drawScroll->setBackgroundRole(QPalette::Dark);
+    drawScroll->setWidget(draw);
+    renderLayout->addWidget(drawScroll);
+
+    edit = new EditArea(Controller);
+    edit->setMinimumSize(800,800);
+    QScrollArea* editScroll = new QScrollArea();
+    editScroll->setBackgroundRole(QPalette::Dark);
+    editScroll->setWidget(edit);
+    renderLayout->addWidget(editScroll);
 
     ui->centralWidget->setLayout(renderLayout);
 
