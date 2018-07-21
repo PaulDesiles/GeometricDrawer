@@ -26,14 +26,14 @@ MainWindow::MainWindow(QWidget *parent) :
     renderLayout = new QStackedLayout;
     draw = new DrawArea(Controller);
 
-    draw->setMinimumSize(800,800);
+    draw->setMinimumSize(DRAWING_WIDTH, DRAWING_HEIGHT);
     QScrollArea* drawScroll = new QScrollArea();
     drawScroll->setBackgroundRole(QPalette::Dark);
     drawScroll->setWidget(draw);
     renderLayout->addWidget(drawScroll);
 
     edit = new EditArea(Controller);
-    edit->setMinimumSize(800,800);
+    edit->setMinimumSize(DRAWING_WIDTH, DRAWING_HEIGHT);
     QScrollArea* editScroll = new QScrollArea();
     editScroll->setBackgroundRole(QPalette::Dark);
     editScroll->setWidget(edit);

@@ -8,7 +8,6 @@
 #include "drawarea.h"
 #include "editarea.h"
 
-
 namespace Ui {
 class MainWindow;
 }

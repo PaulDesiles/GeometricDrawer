@@ -4,9 +4,10 @@
 
 QPointF A;
 QPointF B;
-Guide::Guide(QPointF _a, QPointF _b) :
+
+Guide::Guide (QPointF _a, QPointF _b) :
     QObject(0)
-{
+{    
     A = QPointF(_a.x(), _a.y());
     B = QPointF(_b.x(), _b.y());
 }
@@ -38,7 +39,7 @@ QPointF Guide::isPointSnapped(QPointF p, bool onlyInsideTheSegment) {
     qreal l2 = x * x + y * y;  // i.e. |a-b|^2 -  avoid a sqrt
     qreal t = p.dotProduct(p - A, B - A) / l2;
 
-    if (!onlyInsideTheSegment || (onlyInsideTheSegment && t >= 0 && t <= 1)) {
+    if (!onlyInsideTheSegment || t >= 0 && t <= 1u) {
         const QPointF projected = A + t * (B - A);  // Projection falls on the line
         if (utils::AreNear(p, projected, SNAP_DISTANCE))
             return projected;

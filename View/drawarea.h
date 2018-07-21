@@ -4,6 +4,8 @@
 #include "renderarea.h"
 #include "Controller/maincontroller.h"
 
+#define FORMS_DISTANCE 10
+
 class DrawArea : public RenderArea
 {
 public:

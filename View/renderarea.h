@@ -12,6 +12,9 @@
 #define CONTROL_SIZE 4
 #define SELECT_SIZE 8
 
+#define DRAWING_WIDTH 800
+#define DRAWING_HEIGHT 800
+
 class RenderArea : public QWidget
 {
     Q_OBJECT

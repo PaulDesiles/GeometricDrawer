@@ -57,6 +57,7 @@ void RenderArea::paintEvent(QPaintEvent *) {
     paint(painter);
 }
 
+
 void RenderArea::mousePressEvent(QMouseEvent * mouseEvent) {
     if (controller->currentState() == MainController::WAIT) {
         controller->setCurrentState(controller->selectedState());

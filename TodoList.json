@@ -6,29 +6,29 @@
       "name": "TODO",
       "cards": [
         {
-          "name": "passage en MVC",
-          "details": "M : polygones, guides\nV : comment afficher les polygones en fonction de l'état\nVue Commune qui redirige vers des fonctions abstraites d'affichage\nC : état courant, gestion des vues, modifs sur le modèle",
+          "name": "Snap : prendre le guide le plus proche",
+          "details": "et pas le premier qui est proche !",
           "color": "FCC19D"
         },
         {
-          "name": "Utiliser des Qpolygon au lieu des forms",
+          "name": "Doubles guides",
+          "details": "il faut un guide le long de la forme et un autre à distance",
+          "color": "FCC19D"
+        },
+        {
+          "name": "exclure les formes",
+          "details": "empecher de placer un point à l'interieur des formes et de leur zone d'espace",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Export SVG",
           "details": "",
-          "color": "FCC19D"
+          "color": "FCE4D4"
         },
         {
-          "name": "gestion d'un guide défini",
-          "details": "> isNear(ax + b)\n> gestion du magnet",
-          "color": "FCC19D"
-        },
-        {
-          "name": "gestion de plusieurs guides",
-          "details": "> gestion de l'interaction utilisateur\n> conflits ? point de croisement",
-          "color": "FCC19D"
-        },
-        {
-          "name": "création de guide automatique",
-          "details": "",
-          "color": "FCC19D"
+          "name": "Guide relié à ses points d'origines",
+          "details": "et les nouveaux points qu'on lui rattache.\n> Permettrait de faire bouger les points en bougeant le guide !",
+          "color": "FCE4D4"
         },
         {
           "name": "Idées Interactions",
@@ -49,7 +49,23 @@
     },
     {
       "name": "DONE",
-      "cards": [],
+      "cards": [
+        {
+          "name": "passage en MVC",
+          "details": "M : polygones, guides\nV : comment afficher les polygones en fonction de l'état\nVue Commune qui redirige vers des fonctions abstraites d'affichage\nC : état courant, gestion des vues, modifs sur le modèle",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Utiliser des Qpolygon au lieu des forms",
+          "details": "",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Guide : Segment > Ligne",
+          "details": "",
+          "color": "FCC19D"
+        }
+      ],
       "settings": {
         "color": ""
       }

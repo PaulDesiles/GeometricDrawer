@@ -142,11 +142,10 @@ QPointF DrawArea::getSnappedPosition(QPointF cursorPosition) {
 
 //calcul le guides temporaire correpondant à un segment déplacés d'une longueur l vers l'exterieur de la forme
 void DrawArea::addTempParallelGuide(QPointF A, QPointF B, bool clockwise) {
-    int l = 10;
     qreal deltaX = B.x() - A.x();
     qreal deltaY = B.y() - A.y();
     qreal x = -1 *  deltaY / deltaX;
-    qreal sizeFactor = l / sqrt(x*x + 1);
+    qreal sizeFactor = FORMS_DISTANCE / sqrt(x*x + 1);
 
     if ((deltaX > 0 && clockwise) || (deltaX < 0 && !clockwise))
         sizeFactor = -sizeFactor;
@@ -164,6 +163,7 @@ void DrawArea::addTempParallelGuide(QPointF A, QPointF B, bool clockwise) {
 
 // réccupère les guides précédements stockés pour calculer leurs intersections et obtenir ainsi les guides finaux
 void DrawArea::finalizeGuides() {
+    /*
     int i;
     for (i=0; i < tempGuides.size() - 1; i++) {
         QPointF intersection = utils::GetIntersection(tempGuides[i]->getA(), tempGuides[i]->getB(), tempGuides[i+1]->getA(), tempGuides[i+1]->getB());
@@ -176,6 +176,46 @@ void DrawArea::finalizeGuides() {
 
     for (i=0; i < (int)tempGuides.size(); i++)
         getController()->model()->addGuide(tempGuides[i]);
+    */
+
+
+    std::vector<QPointF> drawingCorners;
+    QPointF side;
+    QPointF newA;
+    QPointF newB;
+
+    drawingCorners.push_back(QPointF(0, 0));
+    drawingCorners.push_back(QPointF(DRAWING_WIDTH, 0));
+    drawingCorners.push_back(QPointF(DRAWING_WIDTH, DRAWING_HEIGHT));
+    drawingCorners.push_back(QPointF(0, DRAWING_HEIGHT));
+
+    uint i;
+    uint j;
+    for (i=0; i < tempGuides.size(); i++) {
+        newA = QPointF(-1, -1);
+        newB = QPointF(-1, -1);
+
+        for (j=0; j < drawingCorners.size(); j++) {
+            uint j2 = (j + 1) % drawingCorners.size();
+            side = utils::GetIntersection(
+                        drawingCorners[j],
+                        drawingCorners[j2],
+                        tempGuides[i]->getA(),
+                        tempGuides[i]->getB());
+
+            if (side.x() >= 0 && side.x() <= DRAWING_WIDTH && side.y() >=0 && side.y() <= DRAWING_HEIGHT) {
+                if (newA.x() < 0) {
+                    newA = side;
+                }
+                else {
+                    newB = side;
+                    break;
+                }
+            }
+        }
+
+        getController()->model()->addGuide(new Guide(newA, newB));
+    }
 
     tempGuides.clear();
 }

@@ -24,7 +24,7 @@ namespace utils {
 
         qreal u = ((y4-y3)*(x1-x3)-(x4-x3)*(y1-y3)) / ((x4-x3)*(y2-y1)-(y4-y3)*(x2-x1));
 
-        QPointF res =  QPointF(x1 + (x2-x1) * u, y1 + (y2-y1) * u);
+        QPointF res = QPointF(x1 + (x2-x1) * u, y1 + (y2-y1) * u);
 
         return res;
     }
