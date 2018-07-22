@@ -4,7 +4,7 @@
 #include <QObject>
 #include "qpoint.h"
 
-#define SNAP_DISTANCE 20
+#define SQUARED_SNAP_DISTANCE 400
 
 class Guide : public QObject
 {
@@ -15,7 +15,7 @@ public:
     QPointF getB();
     void setA(QPointF newA);
     void setB(QPointF newB);
-    QPointF isPointSnapped(QPointF p, bool onlyInsideTheSegment);
+    QPointF getSnapped(QPointF p, bool onlyInsideTheSegment);
 private:
     QPointF A;
     QPointF B;

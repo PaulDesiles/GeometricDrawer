@@ -28,8 +28,7 @@ void Guide::setB(QPointF newB) {
     B = QPointF(newB.x(), newB.y());
 }
 
-
-QPointF Guide::isPointSnapped(QPointF p, bool onlyInsideTheSegment) {
+QPointF Guide::getSnapped(QPointF p, bool onlyInsideTheSegment) {
     //return the projected point of p on the Guide if p is near the Guide
     //otherwise return (-1,-1)
     // source : http://stackoverflow.com/questions/849211/shortest-distance-between-a-point-and-a-line-segment
@@ -39,11 +38,8 @@ QPointF Guide::isPointSnapped(QPointF p, bool onlyInsideTheSegment) {
     qreal l2 = x * x + y * y;  // i.e. |a-b|^2 -  avoid a sqrt
     qreal t = p.dotProduct(p - A, B - A) / l2;
 
-    if (!onlyInsideTheSegment || t >= 0 && t <= 1u) {
-        const QPointF projected = A + t * (B - A);  // Projection falls on the line
-        if (utils::AreNear(p, projected, SNAP_DISTANCE))
-            return projected;
-    }
+    if (!onlyInsideTheSegment || (t >= 0 && t <= 1))
+        return A + t * (B - A);  // Projection falls on the line
 
     return QPointF(-1,-1);
 }

@@ -50,7 +50,8 @@ void EditArea::mousePress(QMouseEvent* mouseEvent){
     if (capturedPoint == -1 && capturedForm != -1 && capturedForm < (int)forms().size()) {
         int i;
         for (i=0; i< forms()[capturedForm]->getSize(); i++) {
-            if (utils::AreNear(forms()[capturedForm]->getPoint(i), mouseEvent->pos(), SELECT_SIZE)) {
+            qreal distance = utils::GetSquaredDistance(forms()[capturedForm]->getPoint(i), mouseEvent->pos());
+            if (distance < SQUARED_SELECT_SIZE) {
                 capturedPoint = i;
                 break;
             }

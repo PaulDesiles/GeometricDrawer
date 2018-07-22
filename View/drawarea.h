@@ -23,6 +23,7 @@ private:
     void addTempParallelGuide(QPointF A, QPointF B, bool clockwise);
     void finalizeGuides();
     QPointF getIntersection(QPointF A1, QPointF A2, QPointF B1, QPointF B2);
+    void handleMouseRelease(QPoint position);
 };
 
 #endif // DRAWAREA_H

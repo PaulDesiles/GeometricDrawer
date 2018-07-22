@@ -2,12 +2,12 @@
 
 namespace utils {
 
-    bool AreNear(QPointF p1, QPointF p2, int threshold)
+    qreal GetSquaredDistance(QPointF p1, QPointF p2)
     {
         qreal x = (p1.x() - p2.x());
         qreal y = (p1.y() - p2.y());
 
-        return (x*x + y*y) < (threshold * threshold);
+        return (x*x + y*y);
     }
 
     QPointF GetIntersection(QPointF A1, QPointF A2, QPointF B1, QPointF B2)

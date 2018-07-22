@@ -10,7 +10,7 @@
 #include "utils.h"
 
 #define CONTROL_SIZE 4
-#define SELECT_SIZE 8
+#define SQUARED_SELECT_SIZE 64
 
 #define DRAWING_WIDTH 800
 #define DRAWING_HEIGHT 800
