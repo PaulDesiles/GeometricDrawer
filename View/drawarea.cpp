@@ -106,9 +106,10 @@ void DrawArea::mouseRelease(QMouseEvent* mouseEvent){
 
 void DrawArea::handleMouseRelease(QPoint position)
 {
+    QPointF snapped = getSnappedPosition(position);
     if (tempForm.size() > 2)
     {
-        qreal distance = utils::GetSquaredDistance(position, tempForm[0]);
+        qreal distance = utils::GetSquaredDistance(snapped, tempForm[0]);
         if (distance < SQUARED_SELECT_SIZE)
         {
             validateForm();
@@ -116,7 +117,7 @@ void DrawArea::handleMouseRelease(QPoint position)
         }
     }
 
-    tempEndPoint = getSnappedPosition(position);
+    tempEndPoint = snapped;
     tempForm.push_back(tempEndPoint);
 }
 
@@ -154,6 +155,7 @@ QPointF DrawArea::getSnappedPosition(QPointF cursorPosition) {
 
         float minDistance = 100000;
         int minDistanceIndex = -1;
+
         for (i=0; i<(int)guides().size(); i++) {
             if (minDistance > snappedDistances[i])
             {
@@ -163,7 +165,29 @@ QPointF DrawArea::getSnappedPosition(QPointF cursorPosition) {
         }
 
         if (minDistanceIndex != -1 && minDistance < SQUARED_SNAP_DISTANCE)
+        {
+            float secondMin = 100000;
+            int secondMinIndex = -1;
+
+            for (i=0; i<(int)guides().size(); i++) {
+                if (i != minDistanceIndex && secondMin > snappedDistances[i])
+                {
+                    secondMinIndex = i;
+                    secondMin = snappedDistances[i];
+                }
+            }
+
+            if (secondMinIndex != -1 && secondMin < SQUARED_SNAP_DISTANCE)
+            {
+                QPointF intersection = utils::GetIntersection(guides()[minDistanceIndex]->getA(), guides()[minDistanceIndex]->getB(),
+                                       guides()[secondMinIndex]->getA(), guides()[secondMinIndex]->getB());
+
+                if (utils::GetSquaredDistance(cursorPosition, intersection) < SQUARED_SNAP_DISTANCE)
+                    return intersection;
+            }
+
             return snappedPoints[minDistanceIndex];
+        }
     }
 
     return cursorPosition;

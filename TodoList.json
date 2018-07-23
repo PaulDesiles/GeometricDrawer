@@ -6,8 +6,13 @@
       "name": "TODO",
       "cards": [
         {
-          "name": "Snap : prendre le guide le plus proche",
-          "details": "et pas le premier qui est proche !",
+          "name": "mise en évidence des guides qui aimantent le curseur",
+          "details": "",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Debug infos",
+          "details": "Nb formes et nb de guides",
           "color": "FCC19D"
         },
         {
@@ -62,6 +67,16 @@
         },
         {
           "name": "Guide : Segment > Ligne",
+          "details": "",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Snap : prendre le guide le plus proche",
+          "details": "et pas le premier qui est proche !",
+          "color": "FCC19D"
+        },
+        {
+          "name": "aimanter aux Intersections de guides",
           "details": "",
           "color": "FCC19D"
         }
