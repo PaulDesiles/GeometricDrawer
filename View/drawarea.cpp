@@ -9,7 +9,8 @@ QVector<QPointF> tempForm;
 bool overFirst = false;
 clock_t lastClicReleaseTime;
 
-std::vector<Guide*> tempGuides;
+QVector<Guide*> tempGuides;
+QVector<Guide*> snappingGuides;
 
 DrawArea::DrawArea(MainController* controller) :
     RenderArea(controller)
@@ -42,6 +43,30 @@ void DrawArea::paint(QPainter* painter) {
 
 //        painter->restore();
 //    }
+
+
+    painter->save();
+
+    QColor color = Qt::red;
+    color.setAlphaF(0.5);
+    painter->setPen(QPen(QBrush(color), 1));
+
+    for (i=0; i < (int)snappingGuides.size();i++) {
+        Guide* guide = snappingGuides[i];
+        painter->drawLine(guide->getA(), guide-> getB());
+    }
+
+    color = Qt::black;
+    color.setAlphaF(0.3);
+    painter->setPen(QPen(QBrush(color), 0));
+
+    for (i=0; i < (int)guides().size();i++) {
+        Guide* guide = guides()[i];
+        if (!snappingGuides.contains(guide))
+            painter->drawLine(guide->getA(), guide-> getB());
+    }
+    painter->restore();
+
 
     //pointer
     if (!tempEndPoint.isNull()) {
@@ -141,10 +166,11 @@ void DrawArea::validateForm() {
 }
 
 QPointF DrawArea::getSnappedPosition(QPointF cursorPosition) {
+    snappingGuides.clear();
     int i;
     if (guides().size() >= 1) {
-        std::vector<QPointF> snappedPoints;
-        std::vector<qreal> snappedDistances;
+        QVector<QPointF> snappedPoints;
+        QVector<qreal> snappedDistances;
         QPointF projected;
 
         for (i=0; i<(int)guides().size(); i++) {
@@ -166,6 +192,8 @@ QPointF DrawArea::getSnappedPosition(QPointF cursorPosition) {
 
         if (minDistanceIndex != -1 && minDistance < SQUARED_SNAP_DISTANCE)
         {
+            snappingGuides.push_back(guides()[minDistanceIndex]);
+
             float secondMin = 100000;
             int secondMinIndex = -1;
 
@@ -183,7 +211,10 @@ QPointF DrawArea::getSnappedPosition(QPointF cursorPosition) {
                                        guides()[secondMinIndex]->getA(), guides()[secondMinIndex]->getB());
 
                 if (utils::GetSquaredDistance(cursorPosition, intersection) < SQUARED_SNAP_DISTANCE)
+                {
+                    snappingGuides.push_back(guides()[secondMinIndex]);
                     return intersection;
+                }
             }
 
             return snappedPoints[minDistanceIndex];
@@ -232,7 +263,7 @@ void DrawArea::finalizeGuides() {
     */
 
 
-    std::vector<QPointF> drawingCorners;
+    QVector<QPointF> drawingCorners;
     QPointF side;
     QPointF newA;
     QPointF newB;

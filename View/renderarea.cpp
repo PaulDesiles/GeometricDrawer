@@ -14,15 +14,15 @@ RenderArea::RenderArea(MainController* _controller, QWidget *parent) :
     setMouseTracking(true);
 }
 
-std::vector<Form*> RenderArea::forms() {
+QVector<Form*> RenderArea::forms() {
     return controller->model()->forms();
 }
 
-std::vector<Guide*> RenderArea::guides() {
+QVector<Guide*> RenderArea::guides() {
     return controller->model()->guides();
 }
 
-std::vector<QPointF> RenderArea::intersections() {
+QVector<QPointF> RenderArea::intersections() {
     return controller->model()->intersections();
 }
 
@@ -41,18 +41,6 @@ void RenderArea::paintEvent(QPaintEvent *) {
             painter->restore();
         }
     }
-
-    painter->save();
-
-    QColor color = Qt::red;
-    color.setAlphaF(0.5);
-    painter->setPen(QPen(QBrush(color), 0));
-
-    for (f=0; f < (int)guides().size();f++) {
-        Guide* guide = guides()[f];
-        painter->drawLine(guide->getA(), guide-> getB());
-    }
-    painter->restore();
 
     paint(painter);
 }

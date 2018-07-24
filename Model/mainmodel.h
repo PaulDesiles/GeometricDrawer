@@ -8,16 +8,16 @@ class MainModel
 {
 public:
     MainModel();
-    std::vector<Form*> forms();
+    QVector<Form*> forms();
     Form* getForm(int i);
     void addForm(Form* form);
     void deleteForm(int index);
 
-    std::vector<Guide*> guides();
+    QVector<Guide*> guides();
     Guide* getGuide(int i);
     void addGuide(Guide* guide);
 
-    std::vector<QPointF> intersections();
+    QVector<QPointF> intersections();
     QPointF getIntersection(int i);
 };
 

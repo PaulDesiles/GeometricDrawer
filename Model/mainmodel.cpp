@@ -2,15 +2,15 @@
 #include <QDebug>
 #include "utils.h"
 
-std::vector<Form*> _forms;
-std::vector<Guide*> _guides;
-std::vector<QPointF> _intersections;
+QVector<Form*> _forms;
+QVector<Guide*> _guides;
+QVector<QPointF> _intersections;
 
 MainModel::MainModel()
 {
 }
 
-std::vector<Form*> MainModel::forms() {
+QVector<Form*> MainModel::forms() {
     return _forms;
 }
 
@@ -28,7 +28,7 @@ void MainModel::deleteForm(int index) {
 }
 
 
-std::vector<Guide*> MainModel::guides()
+QVector<Guide*> MainModel::guides()
 {
     return _guides;
 }
@@ -62,7 +62,7 @@ void MainModel::addGuide(Guide *guide)
     _guides.push_back(guide);
 }
 
-std::vector<QPointF> MainModel::intersections()
+QVector<QPointF> MainModel::intersections()
 {
     return _intersections;
 }

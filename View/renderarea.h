@@ -29,9 +29,9 @@ private:
     void mouseReleaseEvent(QMouseEvent * mouseEvent);
 
 protected:
-    std::vector<Form*> forms();
-    std::vector<Guide*> guides();
-    std::vector<QPointF> intersections();
+    QVector<Form*> forms();
+    QVector<Guide*> guides();
+    QVector<QPointF> intersections();
     virtual void paint(QPainter* painter) = 0;
     virtual void mousePress(QMouseEvent* mouseEvent) = 0;
     virtual void mouseMove(QMouseEvent* mouseEvent) = 0;
