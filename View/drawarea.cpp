@@ -81,7 +81,7 @@ void DrawArea::paint(QPainter* painter) {
 
     //futur line
     if (!tempEndPoint.isNull() && tempForm.size() >= 1) {
-        painter->setPen(QPen(Qt::gray, 1));
+        painter->setPen(QPen(Qt::gray, 2));
         painter->drawLine(tempForm[tempForm.size() - 1], tempEndPoint);
     }
 
@@ -273,8 +273,8 @@ void DrawArea::finalizeGuides() {
     drawingCorners.push_back(QPointF(DRAWING_WIDTH, DRAWING_HEIGHT));
     drawingCorners.push_back(QPointF(0, DRAWING_HEIGHT));
 
-    uint i;
-    uint j;
+    int i;
+    int j;
     for (i=0; i < tempGuides.size(); i++) {
         newA = QPointF(-1, -1);
         newB = QPointF(-1, -1);

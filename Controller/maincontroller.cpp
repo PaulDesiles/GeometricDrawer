@@ -7,6 +7,7 @@ MainController::State _currentState;
 bool controlPressed = false;
 
 MainController::MainController(MainModel* m)
+    : QObject(0)
 {
     _model = m;
     _currentState = MainController::WAIT;
@@ -49,3 +50,9 @@ bool MainController::IsControlPressed()
 {
     return controlPressed;
 }
+
+void MainController::showMessage(QString message)
+{
+    emit messageChanged(message);
+}
+

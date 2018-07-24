@@ -23,6 +23,10 @@ MainWindow::MainWindow(QWidget *parent) :
     Model = new MainModel();
     Controller = new MainController(Model);
 
+
+    QObject::connect(Controller, &MainController::messageChanged,
+                     this, &MainWindow::onStatusMessageChanged);
+
     renderLayout = new QStackedLayout;
     draw = new DrawArea(Controller);
 
@@ -49,6 +53,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::onStatusMessageChanged(QString message)
+{
+    statusBar()->showMessage(message);
+}
 
 void MainWindow::on_actionDraw_triggered(bool checked)
 {

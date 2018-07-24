@@ -20,6 +20,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void onStatusMessageChanged(QString message);
+
 private slots:
     void on_actionDraw_triggered(bool checked);
     void on_actionEdit_triggered(bool checked);

@@ -62,6 +62,10 @@ void RenderArea::mouseMoveEvent(QMouseEvent * mouseEvent) {
 void RenderArea::mouseReleaseEvent(QMouseEvent * mouseEvent) {
     mouseRelease(mouseEvent);
     update();
+
+    controller->messageChanged(QString("Guides : %1\t Forms : %2")
+                               .arg(controller->model()->guides().size())
+                               .arg(controller->model()->forms().size()));
 }
 
 void RenderArea::setColorForForm(int i, QPainter* painter) {
