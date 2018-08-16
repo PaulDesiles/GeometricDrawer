@@ -224,7 +224,7 @@ QPointF DrawArea::getSnappedPosition(QPointF cursorPosition) {
     return cursorPosition;
 }
 
-//calcul le guides temporaire correpondant à un segment déplacés d'une longueur l vers l'exterieur de la forme
+//Add two temporary guides corresponding to the segment and its parallel at a defined distance outside the form
 void DrawArea::addTempParallelGuide(QPointF A, QPointF B, bool clockwise) {
     qreal deltaX = B.x() - A.x();
     qreal deltaY = B.y() - A.y();
@@ -237,32 +237,14 @@ void DrawArea::addTempParallelGuide(QPointF A, QPointF B, bool clockwise) {
     QPointF C = QPointF(sizeFactor * x + A.x(), sizeFactor + A.y());
     QPointF D = QPointF(sizeFactor * x + B.x(), sizeFactor + B.y());
 
-    //qDebug() << "_dx " << deltaX <<  "\t_clkws " << clockwise;
-
-
-    //getController()->model()->addGuide(new Guide(C,D));
+    tempGuides.push_back(new Guide(A,B));
     tempGuides.push_back(new Guide(C,D));
 }
 
 
-// réccupère les guides précédements stockés pour calculer leurs intersections et obtenir ainsi les guides finaux
+
+// get final guides from temporary ones by computing their intersections with the drawing borders
 void DrawArea::finalizeGuides() {
-    /*
-    int i;
-    for (i=0; i < tempGuides.size() - 1; i++) {
-        QPointF intersection = utils::GetIntersection(tempGuides[i]->getA(), tempGuides[i]->getB(), tempGuides[i+1]->getA(), tempGuides[i+1]->getB());
-        tempGuides[i]->setB(intersection);
-        tempGuides[i+1]->setA(intersection);
-    }
-    QPointF intersection = utils::GetIntersection(tempGuides[i]->getA(), tempGuides[i]->getB(), tempGuides[0]->getA(), tempGuides[0]->getB());
-    tempGuides[i]->setB(intersection);
-    tempGuides[0]->setA(intersection);
-
-    for (i=0; i < (int)tempGuides.size(); i++)
-        getController()->model()->addGuide(tempGuides[i]);
-    */
-
-
     QVector<QPointF> drawingCorners;
     QPointF side;
     QPointF newA;
