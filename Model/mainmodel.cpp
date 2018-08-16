@@ -41,25 +41,39 @@ Guide* MainModel::getGuide(int i)
 void MainModel::addGuide(Guide *guide)
 {
     int i = 0;
+    qreal eps = 0.1;
+    bool containsGuide = false;
     for (i=0; i < (int)_guides.size(); i++) {
-        QPointF intersection = utils::GetIntersection(guide->getA(), guide->getB(), getGuide(i)->getA(), getGuide(i)->getB());
+        QPointF gA = guide->getA();
+        QPointF gB = guide->getB();
+        QPointF iA = getGuide(i)->getA();
+        QPointF iB = getGuide(i)->getB();
+
+        if ((utils::AreEquivalent(gA, iA) && utils::AreEquivalent(gB, iB)) ||
+            (utils::AreEquivalent(gA, iB) && utils::AreEquivalent(gB, iA)))
+        {
+            containsGuide = true;
+            break;
+        }
+
+        QPointF intersection = utils::GetIntersection(gA, gB, iA, iB);
 
         int j = 0;
-        bool alreadyContains = false;
+        bool containsIntersection = false;
         for (j=0;j < (int)_intersections.size();j++) {
-            if (intersection.x() == getIntersection(j).x() &&
-                intersection.y() == getIntersection(j).y())
+            if (utils::AreEquivalent(intersection, getIntersection(j)))
             {
-                alreadyContains = true;
+                containsIntersection = true;
                 break;
             }
         }
 
-        if (!alreadyContains)
+        if (!containsIntersection)
             _intersections.push_back(intersection);
     }
 
-    _guides.push_back(guide);
+    if (!containsGuide)
+        _guides.push_back(guide);
 }
 
 QVector<QPointF> MainModel::intersections()

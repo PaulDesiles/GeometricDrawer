@@ -6,16 +6,6 @@
       "name": "TODO",
       "cards": [
         {
-          "name": "mise en évidence des guides qui aimantent le curseur",
-          "details": "",
-          "color": "FCC19D"
-        },
-        {
-          "name": "Debug infos",
-          "details": "Nb formes et nb de guides",
-          "color": "FCC19D"
-        },
-        {
           "name": "Doubles guides",
           "details": "il faut un guide le long de la forme et un autre à distance",
           "color": "FCC19D"
@@ -79,6 +69,21 @@
           "name": "aimanter aux Intersections de guides",
           "details": "",
           "color": "FCC19D"
+        },
+        {
+          "name": "mise en évidence des guides qui aimantent le curseur",
+          "details": "",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Debug infos",
+          "details": "Nb formes et nb de guides",
+          "color": "FCC19D"
+        },
+        {
+          "name": "Supprimer guides en doublons",
+          "details": "",
+          "color": "FC9AFB"
         }
       ],
       "settings": {

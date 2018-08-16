@@ -28,4 +28,14 @@ namespace utils {
 
         return res;
     }
+
+    bool AreEquivalent(QPointF A, QPointF B)
+    {
+        return AreEquivalent(A.x(), B.x()) && AreEquivalent(A.y(), B.y());
+    }
+
+    bool AreEquivalent(qreal A, qreal B)
+    {
+        return std::abs(A - B) < EPSYLON;
+    }
 }
